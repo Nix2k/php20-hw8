@@ -13,10 +13,10 @@
 	include 'list.php';
 ?>
 
-<form action="login.php" method="POST">
+<!--form action="login.php" method="POST">
 	<div class="g-recaptcha" data-sitekey="6LeDDEcUAAAAAP8iUMPgUImZNGuBLhTSyZwa8jcD"></div>
 	<input type="submit" name="Login" value="Войти">
-</form>
+</form-->
 
 </body>
 </html>
