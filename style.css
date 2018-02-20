@@ -41,6 +41,10 @@ input[type="checkbox"] {
 	margin: 10px;
 }
 
+.g-recaptcha {
+	margin: 10px auto;
+}
+
 a {
 	text-decoration: none;
 	margin: 5px 20px;
