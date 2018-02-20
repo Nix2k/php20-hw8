@@ -5,6 +5,11 @@
 		exit;
 	}
 
+	if (isGuest()){
+		header('Location: index.php');
+		exit;
+	}
+
 	if (isset($_POST['upload'])) { //Если форма отправлена
 		if (isset($_FILES['test'])) { //Файл передан
 			$uploaddir = __DIR__.'/uploads/';

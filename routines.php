@@ -77,6 +77,11 @@ function checkUser($login, $password) {
 	}
 }
 
+// проверяет является ли пользователь гостем
+function isGuest() {
+	return $_SESSION['guest'];
+}
+
 // разлогинивание пользователя
 function logoutUser() {
 	session_destroy();
