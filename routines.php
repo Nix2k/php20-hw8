@@ -63,6 +63,7 @@ function checkUser($login, $password) {
 			$_SESSION['user'] = $users[$login];
 			$_SESSION['errLoginCount'] = 0;
 			$_SESSION['timeToLogin'] = time();
+			$_SESSION['guest']=false;
 			return true;
 		}
 		else {

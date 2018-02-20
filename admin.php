@@ -1,4 +1,10 @@
 <?php
+	require_once 'routines.php';
+	if (!isUserLogedIn()) {
+		header('Location: login.php');
+		exit;
+	}
+
 	if (isset($_POST['upload'])) { //Если форма отправлена
 		if (isset($_FILES['test'])) { //Файл передан
 			$uploaddir = __DIR__.'/uploads/';
@@ -66,7 +72,7 @@
 	<?php include 'menu.php';?>
 	<h1>Загрузка файла с тестом</h1>
 	<form  enctype="multipart/form-data" method="post" action="admin.php">
-		<p>Файл с тестом <input type="file" name="test" accept=".json"></p>
+		<input type="file" name="test" accept=".json">
 		<input type="submit" name="upload" value="Загрузить">
 	</form>
 </body>

@@ -7,5 +7,4 @@
 			echo '<a href="logout.php">Выйти</a>';
 		}
 	?>
-</nav>
-<br>	
+</nav>	

@@ -80,9 +80,9 @@
 	echo "<h1>$title->title</h1>";
 	echo "<form method='GET' action='test.php'>";
 	foreach ($test as $qId => $question) {
-		echo '<p><b>'.htmlspecialchars(strip_tags($question->text)).'</b></p>';
+		echo '<p><b>'.clearInput($question->text).'</b></p>';
 		foreach ($question->options as $optionId => $option) {
-			echo "<input type='checkbox' name='".htmlspecialchars(strip_tags($qId))." ".htmlspecialchars(strip_tags($optionId))."' value='1'>".htmlspecialchars(strip_tags($option[0]))."<br>";
+			echo "<input type='checkbox' name='".clearInput($qId)." ".clearInput($optionId)."' value='1'>".clearInput($option[0])."<br>";
 		}
 	}
 	echo "<input type='hidden' name='id' value='$id'>";

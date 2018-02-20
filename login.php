@@ -4,6 +4,7 @@
 		header('Location: index.php');
 		exit;
 	}
+
 	if ($_SESSION['timeToLogin']>time()) {
 		$remine = $_SESSION['timeToLogin']-time();
 		die("Повторите попытку через $remine сек.");
@@ -29,16 +30,28 @@
 <body>
 
 <h1>Вход на сайт</h1>
-<form action="login.php" method="POST">
-	<input name="username" placeholder="Имя пользователя" required>
-	<input type="password" name="password" placeholder="Пароль" required>
-	<?php
-		if ($_SESSION['errLoginCount']>5) { //если было 6 неудачных логинов вывести капчу
-			echo '<div class="g-recaptcha" data-sitekey="6LeDDEcUAAAAAP8iUMPgUImZNGuBLhTSyZwa8jcD"></div>';
-		}
-	?>
-	<input type="submit" name="Login" value="Войти">
-</form>
+<div class="flexCont">
+	<div class="loginForm">
+		<h2>Для зарегистрированных пользователей</h2>
+		<form action="login.php" method="POST">
+			<input name="username" placeholder="Имя пользователя" required>
+			<input type="password" name="password" placeholder="Пароль" required>
+			<?php
+				if ($_SESSION['errLoginCount']>5) { //если было 6 неудачных логинов вывести капчу
+					echo '<div class="g-recaptcha" data-sitekey="6LeDDEcUAAAAAP8iUMPgUImZNGuBLhTSyZwa8jcD"></div>';
+				}
+			?>
+			<input type="submit" name="Login" value="Войти">
+		</form>
+	</div>
+	<div class="loginForm">
+		<h2>Для гостей</h2>
+		<form action="guestlogin.php" method="POST">
+			<input name="username" placeholder="Имя пользователя" required>
+			<input type="submit" name="Login" value="Войти как гость">
+		</form>
+	</div>
+</div>
 
 </body>
 </html>

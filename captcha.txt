@@ -1,5 +1,0 @@
-https://developers.google.com/recaptcha/docs/verify
-
-
-
-//admin - AdminPassword123; user - pass
