@@ -7,8 +7,7 @@
 
 	if (isGuest()){
 		http_response_code(403);
-		header('Location: index.php');
-		exit;
+		die('Доступ запрещен');
 	}
 
 	if (isset($_POST['upload'])) { //Если форма отправлена
