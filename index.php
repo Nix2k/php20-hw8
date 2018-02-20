@@ -1,3 +1,11 @@
+<?php
+	require_once 'routines.php';
+	if (!isUserLogedIn()) {
+		header('Location: login.php');
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -12,11 +20,6 @@
 	include 'menu.php';
 	include 'list.php';
 ?>
-
-<!--form action="login.php" method="POST">
-	<div class="g-recaptcha" data-sitekey="6LeDDEcUAAAAAP8iUMPgUImZNGuBLhTSyZwa8jcD"></div>
-	<input type="submit" name="Login" value="Войти">
-</form-->
 
 </body>
 </html>

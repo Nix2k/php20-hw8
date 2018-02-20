@@ -1,6 +1,12 @@
 <?php
+	require_once 'routines.php';
+	if (!isUserLogedIn()) {
+		header('Location: login.php');
+		exit;
+	}
+
 	if (isset($_GET['id'])) { //Задан номер теста
-		$id = htmlspecialchars($_GET['id']);
+		$id = clearInput($_GET['id']);
 		$tests = array_slice(scandir('uploads/'), 2);
 		$countOfTests = count($tests);			
 		if ((is_numeric($id))&&($id>=1)&&($id<=$countOfTests)) { // 0 <= номер теста <= равно количества тестов
@@ -10,32 +16,21 @@
 			$title = array_shift($test);
 
 			if (isset($_GET['ready'])) { //Если форма отправлена
-				if (!isset($_GET['username'])) {
-					http_response_code(400);
-					die('Не задано имя тестируемого');
-				}
-				$username = htmlspecialchars(strip_tags($_GET['username']));
+				$username = $_SESSION['user']['name'];
 				$scores = 0; //количество верных ответов
 				$numOfQuestions = 0; //количество вопросов
-				//echo "<h1>Результаты прохождения теста: $title->title</h1>";
 				foreach ($test as $qId => $question) {
-					//echo '<p><b>'.htmlspecialchars(strip_tags($question->text)).'</b></p>';
 					$isRight = true;
 					foreach ($question->options as $optionId => $option) {
 						if ((isset($_GET[$qId.'_'.$optionId])) xor ($option[1]==1))
 							$isRight = false;
 					}
 					if ($isRight) {
-						//echo '<p style="color: green;">Верно</p>';
 						$scores++;
 					}
-					/*else {
-						echo '<p style="color: red;">Не верно</p>';
-					}*/
 					$numOfQuestions++;
 				}
 				$mark = round($scores*100/$numOfQuestions);
-				//echo "<p><b>Количество набранных баллов $mark из 100</b></p>";
 				//Генерация файла с сертификатом
 				$imgBlank = imagecreatefrompng(__DIR__.'/img/blank.png');
 				$xAx = round(imagesx($imgBlank) / 2);
@@ -84,7 +79,6 @@
 	//Отрисовка формы
 	echo "<h1>$title->title</h1>";
 	echo "<form method='GET' action='test.php'>";
-	echo "Имя: <input name='username' required><br>";
 	foreach ($test as $qId => $question) {
 		echo '<p><b>'.htmlspecialchars(strip_tags($question->text)).'</b></p>';
 		foreach ($question->options as $optionId => $option) {
