@@ -12,7 +12,6 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Тестирование</title>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 
